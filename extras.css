@@ -418,3 +418,20 @@ body.ti-locked { overflow: hidden; }
 }
 .site-rating-button.selected { background: #d8324c; border-color: #ff8796; }
 .site-rating-note { font-size: 12px; color: #bcaebb; }
+
+.site-rating-summary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 18px auto;
+}
+.site-rating-summary strong {
+    font-size: 24px;
+    color: #f4d58b;
+}
+.site-rating-summary span {
+    color: #d7cbd8;
+    font-size: 14px;
+}

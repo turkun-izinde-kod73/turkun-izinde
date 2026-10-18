@@ -208,7 +208,53 @@
 
 /* SITE_RATING_WIDGET_LOCAL */
 (function () {
-    function initRating() {
+    const config = {
+        apiKey: "AIzaSyCI4yFdFfB82JK2-22Fhxu_-2P0zt37CY",
+        authDomain: "turkun-izinde-puan-20261018.firebaseapp.com",
+        projectId: "turkun-izinde-puan-20261018",
+        appId: "1:769511864708:web:03e9586ca04fe6b09785d1"
+    };
+
+    const ready = (async () => {
+        const v = "11.10.0";
+        const [a, au, fs] = await Promise.all([
+            import(`https://www.gstatic.com/firebasejs/${v}/firebase-app.js`),
+            import(`https://www.gstatic.com/firebasejs/${v}/firebase-auth.js`),
+            import(`https://www.gstatic.com/firebasejs/${v}/firebase-firestore.js`)
+        ]);
+        const app = a.initializeApp(config, "ati-site-ratings");
+        return { auth: au.getAuth(app), au, db: fs.getFirestore(app), fs };
+    })();
+
+    async function refreshStats() {
+        const avg = document.getElementById("siteRatingAverage");
+        const countEl = document.getElementById("siteRatingCount");
+        if (!avg || !countEl) return;
+
+        try {
+            const { db, fs } = await ready;
+            const snap = await fs.getDocs(fs.collection(db, "siteRatings"));
+            let total = 0;
+            let count = 0;
+
+            snap.forEach(d => {
+                const score = d.data().score;
+                if (Number.isInteger(score) && score >= 1 && score <= 10) {
+                    total += score;
+                    count++;
+                }
+            });
+
+            avg.textContent = count ? (total / count).toFixed(1) + " / 10" : "Henüz oy yok";
+            countEl.textContent = count + (count === 1 ? " değerlendirme" : " değerlendirme");
+        } catch (e) {
+            console.error("Site puanları yüklenemedi:", e);
+            avg.textContent = "Şimdilik yüklenemedi";
+            countEl.textContent = "Daha sonra tekrar dene";
+        }
+    }
+
+    function init() {
         if (document.getElementById("siteRatingSection")) return;
 
         const section = document.createElement("section");
@@ -218,56 +264,70 @@
           <p class="site-rating-kicker">⭐ FİKRİNİ BİZİMLE PAYLAŞ</p>
           <h2>Atalarımızın İzinde'yi nasıl buldun?</h2>
           <p>Sitemize 10 üzerinden bir puan ver!</p>
+          <div class="site-rating-summary">
+            <strong id="siteRatingAverage">Yükleniyor...</strong>
+            <span id="siteRatingCount">Değerlendirmeler yükleniyor...</span>
+          </div>
           <div class="site-rating-buttons">
             ${Array.from({length:10}, (_,i) =>
               `<button type="button" class="site-rating-button"
-              data-score="${i+1}">${i+1}</button>`
+              data-score="${i+1}" aria-label="${i+1} puan">${i+1}</button>`
             ).join("")}
           </div>
-          <p id="siteRatingResult" aria-live="polite">Puanını seç ❤️</p>
+          <p class="site-rating-result" id="siteRatingResult" aria-live="polite">
+            Puanını seç ❤️
+          </p>
           <p class="site-rating-note">
-            Bu basit sürüm puanını yalnızca bu tarayıcıda saklar.
+            Her tarayıcı için anonim bir oy kaydedilir. Oyunu daha sonra değiştirebilirsin.
           </p>`;
 
         const footer = document.querySelector("footer");
-        if (footer) footer.parentNode.insertBefore(section, footer);
-        else document.body.appendChild(section);
-
-        const result = section.querySelector("#siteRatingResult");
-        const buttons = section.querySelectorAll(".site-rating-button");
-
-        function selectScore(score, saved) {
-          buttons.forEach(b => {
-            const active = Number(b.dataset.score) === score;
-            b.classList.toggle("selected", active);
-            b.setAttribute("aria-pressed", String(active));
-          });
-          result.textContent = saved
-            ? "Puanın kaydedildi: " + score + "/10 ❤️"
-            : "Puanını seç ❤️";
+        if (footer && footer.parentNode) {
+            footer.parentNode.insertBefore(section, footer);
+        } else {
+            document.body.appendChild(section);
         }
 
-        buttons.forEach(b => b.addEventListener("click", () => {
-          const score = Number(b.dataset.score);
-          try {
-            localStorage.setItem("atalarimizinIzindeSitePuani", score);
-            selectScore(score, true);
-          } catch (e) {
-            result.textContent = "Seçtiğin puan: " + score + "/10";
-          }
-        }));
+        const result = section.querySelector("#siteRatingResult");
 
-        try {
-          const old = Number(localStorage.getItem("atalarimizinIzindeSitePuani"));
-          if (old >= 1 && old <= 10) selectScore(old, true);
-        } catch (e) {}
+        section.querySelectorAll(".site-rating-button").forEach(button => {
+            button.addEventListener("click", async () => {
+                const score = Number(button.dataset.score);
+                result.textContent = "Puanın kaydediliyor...";
+
+                try {
+                    const { auth, au, db, fs } = await ready;
+                    if (!auth.currentUser) await au.signInAnonymously(auth);
+
+                    await fs.setDoc(
+                        fs.doc(db, "siteRatings", auth.currentUser.uid),
+                        { score, updatedAt: fs.serverTimestamp() }
+                    );
+
+                    section.querySelectorAll(".site-rating-button").forEach(b => {
+                        const selected = Number(b.dataset.score) === score;
+                        b.classList.toggle("selected", selected);
+                        b.setAttribute("aria-pressed", String(selected));
+                    });
+
+                    result.textContent = "Oyun kaydedildi, teşekkürler! ❤️";
+                    await refreshStats();
+                } catch (e) {
+                    console.error("Site puanı kaydedilemedi:", e);
+                    result.textContent = "Oy kaydedilemedi. Bağlantıyı kontrol et.";
+                }
+            });
+        });
+
+        refreshStats();
     }
 
-    if (document.readyState === "loading")
-        document.addEventListener("DOMContentLoaded", initRating);
-    else initRating();
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init);
+    } else {
+        init();
+    }
 })();
-
 
 /* FIREBASE_SHARED_SCOREBOARD_V1 */
 (function () {
