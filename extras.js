@@ -333,7 +333,7 @@
 /* FIREBASE_SHARED_SCOREBOARD_V1 */
 (function () {
     const config = {
-        apiKey: "AIzaSyCI4yFdFfB82JK2-22FhXu_-2P0zt37CY",
+        apiKey: "AIzaSyCI4yFdFfB82JK2-22Fhxu_-2P0zt37CY",
         authDomain: "turkun-izinde-puan-20261018.firebaseapp.com",
         projectId: "turkun-izinde-puan-20261018",
         storageBucket: "turkun-izinde-puan-20261018.firebasestorage.app",
