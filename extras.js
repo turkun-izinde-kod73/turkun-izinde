@@ -43,6 +43,22 @@
             <p class="ti-red">☪ ✦ ★</p>
             <p id="tiMessage">Tarih yolculuğu devam ediyor...</p>`;
         body.appendChild(overlay);
+        // Tek kurt siluetinden dort kurtlu bir suru olustur.
+        const packLeaderWolf = overlay.querySelector(".ti-runner");
+        const wolfModel = packLeaderWolf &&
+            packLeaderWolf.querySelector("svg");
+
+        if (packLeaderWolf && wolfModel &&
+            !packLeaderWolf.classList.contains("ti-pack")) {
+            packLeaderWolf.classList.add("ti-pack");
+
+            for (let i = 0; i < 3; i++) {
+                const follower = wolfModel.cloneNode(true);
+                follower.classList.add("ti-pack-member");
+                packLeaderWolf.appendChild(follower);
+            }
+        }
+
 
         const bilgiler = [
             ["Asya Hun Devleti",
