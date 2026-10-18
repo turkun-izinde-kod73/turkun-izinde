@@ -443,7 +443,9 @@
                 return;
             }
 
-            results.forEach(function (record, index) {
+            let rowNumber = 0;
+            results.forEach(function (record) {
+                rowNumber++;
                 const result = record.data();
                 const row = document.createElement("div");
                 row.className = "board-row";
@@ -458,7 +460,7 @@
                 const displayName = initialsMatch
                     ? initialsMatch[1] + "****** " + initialsMatch[2] + "******"
                     : (rawName || "Misafir");
-                name.textContent = (index + 1) + ". " + displayName;
+                name.textContent = rowNumber + ". " + displayName;
 
                 const score = document.createElement("strong");
                 score.className = "red";
