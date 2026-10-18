@@ -389,13 +389,6 @@ tarihimizin izlerini geleceğe bilgiyle taşımaktır.
     <div class="box quiz-box" id="leaderboard">
         <p>Henüz sonuç yok. İlk testi sen tamamla!</p>
     </div>
-    <div style="text-align:center;margin-top:18px">
-        <button class="button" id="resetScores">Puan Tablosunu Sıfırla</button>
-    </div>
-    <p class="notice" style="max-width:760px;margin:16px auto">
-        Sıfırlama yalnızca bu tarayıcıdaki sonuçları siler.
-        Bu sürümde puan tablosu henüz diğer ziyaretçilerle ortak değildir.
-    </p>
 </section>
 
 </main>
@@ -675,26 +668,7 @@ function tabloyuGoster() {
 
 tabloyuGoster();
 
-function puanTablosunuSifirla() {
-    if (!confirm("Bu tarayıcıdaki tüm test sonuçlarını silmek istiyor musun?")) {
-        return;
-    }
 
-    try {
-        localStorage.removeItem("turkunIzindePuanlari");
-    } catch (e) {
-        alert("Tarayıcı kayıtlarına erişilemedi.");
-        return;
-    }
-
-    tabloyuGoster();
-    alert("Puan tablosu sıfırlandı!");
-}
-
-const sifirlaDugmesi = document.getElementById("resetScores");
-if (sifirlaDugmesi) {
-    sifirlaDugmesi.addEventListener("click", puanTablosunuSifirla);
-}
 
 </script>
 <
