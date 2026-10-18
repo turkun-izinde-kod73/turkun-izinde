@@ -13,11 +13,14 @@
         intro.innerHTML = `
             <div>
                 <div class="ti-wolf">🐺</div>
-                <p class="ti-red">KÖKLERDEN GELECEĞE</p>
-                <h1>Türk'ün İzinde</h1>
+                <p class="ti-red">ATALARIMIZIN İZİNDE</p>
+                <h1>Atalarımızın İzinde</h1>
+<blockquote class="ti-quote">“Türk çocuğu ecdadını tanıdıkça, daha büyük işler yapmak için kendinde kuvvet bulacaktır.”</blockquote>
+<p class="ti-quote-author">Gazi Mustafa Kemal Atatürk</p>
                 <p>Tarihimizi keşfet, kültürümüzü tanı ve bilgi yolculuğuna başla.</p>
                 <button class="ti-button" id="tiEnter">Yolculuğa Başla →</button>
-                <p>By Hira Cinali · İlk web projem</p>
+                <p class="ti-intro-foot">Atalarımızın tarihini ve kültürünü tanımak, mirasımızı gelecek nesillere aktarmak için hazırlanmıştır.</p>
+                <p class="ti-intro-foot"><strong>Created by Hira Cinali</strong> · İlk yazılım projem</p>
             </div>`;
         body.prepend(intro);
 
@@ -109,7 +112,7 @@
         document.getElementById("tiEnter").addEventListener("click", function () {
             intro.remove();
             body.classList.remove("ti-locked");
-            kurtlaGec("ana", "Türk'ün İzinde yolculuğu başlıyor...");
+            kurtlaGec("ana", "Atalarımızın İzinde yolculuğu başlıyor...");
         });
 
         sonraki.addEventListener("click", function () {
@@ -150,7 +153,7 @@
                 }
 
                 const mesajlar = {
-                    ana: "Türk'ün İzinde...",
+                    ana: "Atalarımızın İzinde...",
                     tarih: "Tarihimizin izinde...",
                     test: "Bilgini sınama zamanı...",
                     puanlar: "Puan tablosuna yolculuk..."
