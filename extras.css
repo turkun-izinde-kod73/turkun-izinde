@@ -75,3 +75,81 @@ body.ti-locked { overflow: hidden; }
         scroll-behavior: auto !important;
     }
 }
+
+.ti-quote {
+    max-width: 620px;
+    margin: 20px auto 10px;
+    padding: 16px;
+    border-left: 3px solid #ff5268;
+    color: #fff;
+    font-size: clamp(17px, 2.5vw, 22px);
+    line-height: 1.8;
+    font-style: italic;
+}
+.ti-quote-author {
+    color: #ff9cab;
+    font-weight: bold;
+    margin: 10px auto 20px;
+}
+
+/* RUNNING WOLF SILHOUETTE */
+.ti-transition {
+    overflow: hidden;
+}
+.ti-runner {
+    display: block;
+    width: clamp(220px, 42vw, 430px);
+    max-width: 80vw;
+    height: auto;
+    font-size: initial;
+    opacity: .98;
+    filter: drop-shadow(0 0 13px rgba(255, 45, 75, .22));
+    will-change: transform, opacity;
+}
+.ti-runner svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+.ti-runner svg path {
+    fill: #28151f;
+    stroke: #b8314d;
+    stroke-opacity: .52;
+    stroke-width: .8;
+    stroke-linejoin: round;
+}
+.ti-transition.active .ti-runner {
+    animation: wolfRun 1.45s cubic-bezier(.2, .7, .2, 1) both;
+}
+.ti-runner.ti-running .ti-back-legs {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: tiBackGallop .20s ease-in-out infinite alternate;
+}
+.ti-runner.ti-running .ti-front-legs {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: tiFrontGallop .20s ease-in-out infinite alternate;
+}
+@keyframes wolfRun {
+    0%   { transform: translateX(-68vw) scale(.78); opacity: 0; }
+    12%  { opacity: .95; }
+    45%  { transform: translateX(-5vw) scale(1.05); opacity: 1; }
+    75%  { transform: translateX(35vw) scale(1); opacity: .95; }
+    100% { transform: translateX(75vw) scale(.82); opacity: 0; }
+}
+@keyframes tiBackGallop {
+    from { transform: rotate(-13deg) translateY(2px); }
+    to   { transform: rotate(13deg) translateY(-2px); }
+}
+@keyframes tiFrontGallop {
+    from { transform: rotate(14deg) translateY(-2px); }
+    to   { transform: rotate(-14deg) translateY(2px); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .ti-transition.active .ti-runner,
+    .ti-runner.ti-running .ti-wolf-legs {
+        animation: none !important;
+    }
+}

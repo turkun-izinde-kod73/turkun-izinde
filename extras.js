@@ -27,7 +27,19 @@
         const overlay = document.createElement("div");
         overlay.className = "ti-transition";
         overlay.innerHTML = `
-            <div class="ti-runner">🐺</div>
+            <div class="ti-runner" aria-hidden="true">
+            <svg viewBox="0 0 240 130" focusable="false">
+                <g class="ti-wolf-legs ti-back-legs">
+                    <path d="M60 61 L77 66 L70 82 L52 98 L42 94 L56 77 Z"/>
+                    <path d="M76 60 L89 66 L103 79 L95 87 L77 77 L65 69 Z"/>
+                </g>
+                <path class="ti-wolf-body" d="M31 51 L11 34 L7 22 L25 35 L43 42 C58 34 77 31 95 36 L119 41 C133 42 146 34 157 22 L173 12 L184 17 L178 29 L194 24 L211 26 L228 20 L222 32 L231 38 L217 48 L198 51 L185 47 L176 58 L164 66 C150 69 134 68 120 66 L96 64 C77 65 62 61 48 62 L34 62 Z"/>
+                <g class="ti-wolf-legs ti-front-legs">
+                    <path d="M144 61 L157 65 L170 82 L185 93 L180 100 L161 90 L147 76 L136 70 Z"/>
+                    <path d="M151 60 L163 62 L162 75 L146 89 L136 86 L148 73 Z"/>
+                </g>
+            </svg>
+        </div>
             <p class="ti-red">☪ ✦ ★</p>
             <p id="tiMessage">Tarih yolculuğu devam ediyor...</p>`;
         body.appendChild(overlay);
