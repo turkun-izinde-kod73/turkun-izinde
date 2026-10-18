@@ -492,7 +492,7 @@ function soruyuGoster() {
     const yuzde = (sira / sorular.length) * 100;
 
     document.getElementById("quiz").innerHTML = `
-        <p class="red"><strong>Soru ${sira + 1} / 10</strong></p>
+        <p class="red"><strong>Soru ${sira + 1} / ${sorular.length}</strong></p>
         <div class="progress-bg">
             <div class="progress" style="width:${yuzde}%"></div>
         </div>
@@ -538,11 +538,11 @@ function cevapSec(secim) {
 
     const next = document.getElementById("next");
     next.style.display = "inline-block";
-    next.textContent = sira === 9 ? "Sonucu Gör →" : "Sonraki Soru →";
+    next.textContent = sira === sorular.length - 1 ? "Sonucu Gör →" : "Sonraki Soru →";
 }
 
 function sonraki() {
-    if (sira < 9) {
+    if (sira < sorular.length - 1) {
         sira++;
         soruyuGoster();
     } else {
@@ -671,7 +671,7 @@ tabloyuGoster();
 
 
 </script>
-<
+<script>
 function yenidenBaslat() {
     window.location.reload();
 }
@@ -686,7 +686,7 @@ function paylasSonuc() {
 
     window.open(adres, "_blank", "noopener,noreferrer");
 }
-
-/body>
-</html>
+</script>
 <script src="extras.js"></script>
+</body>
+</html>

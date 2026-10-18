@@ -412,3 +412,65 @@
         }
     });
 })();
+
+/* ATALARIMIZIN IZINDE EK SORULAR - PARCA 1 */
+(function () {
+    if (window.atiSorularBolum1) return;
+    window.atiSorularBolum1 = true;
+    window.atiEkSorular = window.atiEkSorular || [];
+    window.atiEkSorular.push(
+      {soru:"TÜRK-İSLAM TARİHİ — İlk Müslüman Türk devletlerinden biri hangisidir?",secenekler:["Karahanlılar","Göktürkler","Asya Hunları","Hazarlar"],dogru:0,bilgi:"Karahanlılar, Türk-İslam tarihinin önemli devletlerindendir."},
+      {soru:"SELÇUKLULAR — Dandanakan Savaşı hangi yılda yapılmıştır?",secenekler:["1040","1071","1176","1243"],dogru:0,bilgi:"Dandanakan Savaşı 1040 yılında gerçekleşmiştir."},
+      {soru:"MİMARİ — Divriği Ulu Camii hangi ilimizdedir?",secenekler:["Sivas","Konya","Bursa","Edirne"],dogru:0,bilgi:"Divriği Ulu Camii ve Darüşşifası Sivas'tadır."},
+      {soru:"SELÇUKLULAR — Kösedağ Savaşı hangi yılda gerçekleşmiştir?",secenekler:["1071","1176","1243","1453"],dogru:2,bilgi:"Kösedağ Savaşı 1243 yılında gerçekleşmiştir."},
+      {soru:"OSMANLI — İstanbul'un fethinden önce Osmanlı'nın başkentlerinden biri hangisidir?",secenekler:["Edirne","İzmir","Antalya","Trabzon"],dogru:0,bilgi:"Edirne, İstanbul'un fethinden önce Osmanlı başkentiydi."},
+      {soru:"OSMANLI BASINI — İlk resmî Osmanlı gazetesi hangisidir?",secenekler:["Takvim-i Vekayi","İkdam","Tercüman-ı Ahval","Ceride-i Havadis"],dogru:0,bilgi:"Takvim-i Vekayi 1831'de yayımlanmaya başlamıştır."},
+      {soru:"MİLLÎ MÜCADELE — Mudanya Ateşkes Antlaşması hangi yılda imzalanmıştır?",secenekler:["1919","1920","1922","1923"],dogru:2,bilgi:"Mudanya Ateşkes Antlaşması 1922'de imzalanmıştır."},
+      {soru:"ATATÜRK — Atatürk soyadı hangi yılda verilmiştir?",secenekler:["1923","1928","1934","1938"],dogru:2,bilgi:"Atatürk soyadı 1934 yılında verilmiştir."},
+      {soru:"ÇANAKKALE — Çanakkale Deniz Zaferi hangi tarihte anılır?",secenekler:["18 Mart","23 Nisan","19 Mayıs","30 Ağustos"],dogru:0,bilgi:"Çanakkale Deniz Zaferi 18 Mart'ta anılır."},
+      {soru:"GELENEKSEL SPOR — Kırkpınar hangi spor dalıyla tanınır?",secenekler:["Yağlı güreş","Cirit","Okçuluk","At yarışları"],dogru:0,bilgi:"Kırkpınar, geleneksel yağlı güreşlerle tanınır."}
+    );
+})();
+
+/* ATALARIMIZIN IZINDE EK SORULAR - PARCA 2 */
+(function () {
+    if (window.atiSorularBolum2) return;
+    window.atiSorularBolum2 = true;
+    window.atiEkSorular = window.atiEkSorular || [];
+    window.atiEkSorular.push(
+      {soru:"TÜRK TARİHİ — Eski Türklerde devlet işlerinin görüşüldüğü kurultay neydi?",secenekler:["Toy","Divan-ı Hümayun","Meclis-i Mebusan","Senato"],dogru:0,bilgi:"Eski Türklerde kurultay veya toy, önemli devlet işlerinin görüşüldüğü toplantıydı."},
+      {soru:"UYGURLAR — Uygurların kültür tarihinde öne çıkan özelliklerinden biri nedir?",secenekler:["Yerleşik yaşam ve şehir kültürünün gelişmesi","Atlantik ticareti","Sanayi devrimi","Matbaanın Avrupa'da icadı"],dogru:0,bilgi:"Uygurlar döneminde yerleşik yaşam, şehir kültürü ve yazılı eserler gelişmiştir."},
+      {soru:"TÜRK DESTANLARI — Ergenekon Destanı hangi temayla ilişkilendirilir?",secenekler:["Yeniden doğuş ve güçlenme","Deniz ticareti","İstanbul'un fethi","Cumhuriyetin ilanı"],dogru:0,bilgi:"Ergenekon anlatısı, yeniden güçlenme ve özgürlüğe kavuşma temalarıyla ilişkilendirilir."},
+      {soru:"OSMANLI TARİHİ — Osmanlı Devleti'nin ilk anayasasının adı nedir?",secenekler:["Kanun-ı Esasi","Teşkilat-ı Esasiye","Mecelle","Sened-i İttifak"],dogru:0,bilgi:"Kanun-ı Esasi, 1876'da ilan edilen Osmanlı anayasasıdır."},
+      {soru:"TÜRKİYE COĞRAFYASI — Türkiye'nin en yüksek dağı hangisidir?",secenekler:["Ağrı Dağı","Erciyes Dağı","Uludağ","Kaçkar Dağı"],dogru:0,bilgi:"Ağrı Dağı, Türkiye'nin en yüksek dağıdır."},
+      {soru:"KÜLTÜREL MİRAS — UNESCO Dünya Mirası Listesi'nde yer alan Göbeklitepe hangi ilimizdedir?",secenekler:["Şanlıurfa","Mardin","Gaziantep","Diyarbakır"],dogru:0,bilgi:"Göbeklitepe, Şanlıurfa yakınlarında bulunan önemli bir arkeolojik alandır."},
+      {soru:"TÜRK EDEBİYATI — İstiklal Marşı hangi şair tarafından yazılmıştır?",secenekler:["Mehmet Akif Ersoy","Yahya Kemal Beyatlı","Orhan Veli Kanık","Nazım Hikmet"],dogru:0,bilgi:"İstiklal Marşı'nın şairi Mehmet Akif Ersoy'dur."},
+      {soru:"MİLLÎ MÜCADELE — Amasya Genelgesi hangi yılda yayımlanmıştır?",secenekler:["1919","1920","1921","1923"],dogru:0,bilgi:"Amasya Genelgesi 22 Haziran 1919'da yayımlanmıştır."},
+      {soru:"CUMHURİYET TARİHİ — Halifelik hangi yılda kaldırılmıştır?",secenekler:["1922","1923","1924","1930"],dogru:2,bilgi:"Halifelik 3 Mart 1924'te kaldırılmıştır."},
+      {soru:"TÜRK KÜLTÜRÜ — Geleneksel Türk kahvesi kültürü UNESCO tarafından hangi yıl somut olmayan kültürel miras olarak kabul edilmiştir?",secenekler:["2005","2013","2018","2023"],dogru:1,bilgi:"Türk kahvesi kültürü ve geleneği 2013'te UNESCO listesine alınmıştır."}
+    );
+})();
+
+/* HER TESTTE HAVUZDAN RASTGELE 10 SORU */
+(function () {
+    try {
+        if (window.atiQuizRandomized) return;
+        if (typeof sorular === "undefined") {
+            console.error("Test soru listesi bulunamadı.");
+            return;
+        }
+
+        const havuz = [...sorular, ...(window.atiEkSorular || [])];
+
+        for (let i = havuz.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [havuz[i], havuz[j]] = [havuz[j], havuz[i]];
+        }
+
+        sorular.splice(0, sorular.length, ...havuz.slice(0, 10));
+        window.atiQuizRandomized = true;
+        console.info("Rastgele test hazırlandı. Havuz:", havuz.length);
+    } catch (error) {
+        console.error("Rastgele soru sistemi kurulamadı:", error);
+    }
+})();
