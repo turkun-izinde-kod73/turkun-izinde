@@ -641,7 +641,7 @@ function kaydetPuan() {
     // Puan tablosuna yalnızca ad ve soyad baş harfleri kaydedilir.
     const adIlkHarf = Array.from(oyuncuAdi)[0].toLocaleUpperCase("tr-TR");
     const soyadIlkHarf = Array.from(oyuncuSoyadi)[0].toLocaleUpperCase("tr-TR");
-    const gizliAd = adIlkHarf + ". " + soyadIlkHarf + ".";
+    const gizliAd = adIlkHarf + "****** " + soyadIlkHarf + "******";
 
     sonuclar.push({
         ad: gizliAd,
@@ -689,8 +689,15 @@ function tabloyuGoster() {
 
         const isim = document.createElement("span");
         const gizliAd = String(kayit.ad || "Misafir");
-        isim.textContent = (i + 1) + ". " +
-            (gizliAd.endsWith("***") ? gizliAd : gizliAd + " ***");
+        const rawName = String(kayit.ad || "Misafir")
+            .replace(/\bNaN\b/gi, "").trim();
+        const initialsMatch = rawName.match(
+            /^([\p{L}])(?:[.*]+)?\s+([\p{L}])(?:[.*]+)?(?:\s+\*+)?$/u
+        );
+        const displayName = initialsMatch
+            ? initialsMatch[1] + "****** " + initialsMatch[2] + "******"
+            : (rawName || "Misafir");
+        isim.textContent = (i + 1) + ". " + displayName;
 
         const skor = document.createElement("strong");
         skor.className = "red";

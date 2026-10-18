@@ -381,11 +381,14 @@
             return Promise.resolve();
         }
 
-        const first = Array.from(firstName)[0] || "";
-        const last = Array.from(lastName)[0] || "";
-        const initials = first && last
-            ? first.toLocaleUpperCase("tr-TR") + ". " +
-              last.toLocaleUpperCase("tr-TR") + "."
+        const maskLetter = value => {
+            const chars = Array.from(String(value || "").trim());
+            return chars.length
+                ? chars[0].toLocaleUpperCase("tr-TR") + "******"
+                : "";
+        };
+        const maskedName = firstName && lastName
+            ? maskLetter(firstName) + " " + maskLetter(lastName)
             : "Misafir";
 
         lastSaveError = null;
@@ -394,7 +397,7 @@
             await services.fs.addDoc(
                 services.fs.collection(services.db, "scores"),
                 {
-                    ad: initials,
+                    ad: maskedName,
                     puan: score,
                     createdAt: services.fs.serverTimestamp()
                 }
@@ -447,8 +450,15 @@
 
                 const name = document.createElement("span");
                 const gizliAd = String(result.ad || "Misafir");
-                name.textContent = (index + 1) + ". " +
-                    (gizliAd.endsWith("***") ? gizliAd : gizliAd + " ***");
+                const rawName = String(result.ad || "Misafir")
+                    .replace(/\bNaN\b/gi, "").trim();
+                const initialsMatch = rawName.match(
+                    /^([\p{L}])(?:[.*]+)?\s+([\p{L}])(?:[.*]+)?(?:\s+\*+)?$/u
+                );
+                const displayName = initialsMatch
+                    ? initialsMatch[1] + "****** " + initialsMatch[2] + "******"
+                    : (rawName || "Misafir");
+                name.textContent = (index + 1) + ". " + displayName;
 
                 const score = document.createElement("strong");
                 score.className = "red";
