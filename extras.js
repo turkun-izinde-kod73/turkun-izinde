@@ -450,27 +450,3 @@
       {soru:"TÜRK KÜLTÜRÜ — Geleneksel Türk kahvesi kültürü UNESCO tarafından hangi yıl somut olmayan kültürel miras olarak kabul edilmiştir?",secenekler:["2005","2013","2018","2023"],dogru:1,bilgi:"Türk kahvesi kültürü ve geleneği 2013'te UNESCO listesine alınmıştır."}
     );
 })();
-
-/* HER TESTTE HAVUZDAN RASTGELE 10 SORU */
-(function () {
-    try {
-        if (window.atiQuizRandomized) return;
-        if (typeof sorular === "undefined") {
-            console.error("Test soru listesi bulunamadı.");
-            return;
-        }
-
-        const havuz = [...sorular, ...(window.atiEkSorular || [])];
-
-        for (let i = havuz.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [havuz[i], havuz[j]] = [havuz[j], havuz[i]];
-        }
-
-        sorular.splice(0, sorular.length, ...havuz.slice(0, 10));
-        window.atiQuizRandomized = true;
-        console.info("Rastgele test hazırlandı. Havuz:", havuz.length);
-    } catch (error) {
-        console.error("Rastgele soru sistemi kurulamadı:", error);
-    }
-})();
