@@ -471,7 +471,7 @@
         const table = document.getElementById("leaderboard");
         if (table) {
             table.textContent =
-                "Puan tablosuna bağlanılamadı. Firebase ayarlarını kontrol et.";
+                "Firebase bağlantı hatası: " + String(error.code || error.message || error);
         }
     });
 })();
