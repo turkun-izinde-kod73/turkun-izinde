@@ -215,3 +215,40 @@ body.ti-locked { overflow: hidden; }
         width: 96vw;
     }
 }
+
+/* Kurt surusu: siluet, aralik ve kosu */
+.ti-runner.ti-pack {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: min(90vw, 650px);
+    gap: 0;
+    filter: drop-shadow(0 0 12px #d8324c55);
+}
+.ti-runner.ti-pack > svg {
+    display: block;
+    flex: 0 0 28%;
+    width: 28%;
+    height: auto;
+    margin-left: -3%;
+    fill: #100c13;
+    stroke: #532332;
+    stroke-width: 1.2;
+}
+.ti-runner.ti-pack > svg:first-child {
+    transform: translateY(9px) scale(.72);
+    opacity: .65;
+}
+.ti-runner.ti-pack > svg:nth-child(2) {
+    transform: translateY(-7px) scale(.84);
+    opacity: .78;
+}
+.ti-runner.ti-pack > svg:nth-child(3) {
+    transform: translateY(6px) scale(.94);
+    opacity: .9;
+}
+.ti-runner.ti-pack > svg:last-child {
+    transform: scale(1.04);
+    opacity: 1;
+}
+.ti-wolf-eye { fill: #ff5268; stroke: none !important; }

@@ -28,18 +28,20 @@
         overlay.className = "ti-transition";
         overlay.innerHTML = `
             <div class="ti-runner" aria-hidden="true">
-            <svg viewBox="0 0 240 130" focusable="false">
-                <g class="ti-wolf-legs ti-back-legs">
-                    <path d="M60 61 L77 66 L70 82 L52 98 L42 94 L56 77 Z"/>
-                    <path d="M76 60 L89 66 L103 79 L95 87 L77 77 L65 69 Z"/>
-                </g>
-                <path class="ti-wolf-body" d="M31 51 L11 34 L7 22 L25 35 L43 42 C58 34 77 31 95 36 L119 41 C133 42 146 34 157 22 L173 12 L184 17 L178 29 L194 24 L211 26 L228 20 L222 32 L231 38 L217 48 L198 51 L185 47 L176 58 L164 66 C150 69 134 68 120 66 L96 64 C77 65 62 61 48 62 L34 62 Z"/>
-                <g class="ti-wolf-legs ti-front-legs">
-                    <path d="M144 61 L157 65 L170 82 L185 93 L180 100 L161 90 L147 76 L136 70 Z"/>
-                    <path d="M151 60 L163 62 L162 75 L146 89 L136 86 L148 73 Z"/>
-                </g>
-            </svg>
-        </div>
+<svg viewBox="0 0 350 150" role="img" aria-label="Kurt silüeti">
+<path d="M91 65 Q58 47 25 24 L34 43 L17 39 L31 55 L19 62 L47 61 L73 76 L96 78 Z"/>
+<path d="M78 65 Q96 51 121 51 L153 57 L183 56 Q204 52 218 34 L225 13 L237 34 L248 25 L257 42 L281 45 L310 53 L339 62 L319 71 L294 68 Q281 84 258 89 L232 86 L207 82 L180 85 L151 79 L128 81 L105 77 Z"/>
+<g class="ti-wolf-legs ti-back-legs">
+<path d="M111 75 L128 77 L123 96 L108 117 L110 131 L94 134 L88 128 L101 117 L101 97 L99 81 Z"/>
+<path d="M134 77 L148 79 L145 97 L136 111 L139 126 L124 131 L117 126 L129 114 L127 96 Z"/>
+</g>
+<g class="ti-wolf-legs ti-front-legs">
+<path d="M216 79 L231 82 L227 103 L233 120 L246 129 L243 135 L223 135 L216 127 L213 105 L208 88 Z"/>
+<path d="M239 77 L251 75 L252 94 L256 110 L269 121 L264 128 L247 127 L240 118 L239 99 L233 86 Z"/>
+</g>
+<circle cx="294" cy="55" r="2.5" class="ti-wolf-eye"/>
+</svg>
+</div>
             <p class="ti-red">☪ ✦ ★</p>
             <p id="tiMessage">Tarih yolculuğu devam ediyor...</p>`;
         body.appendChild(overlay);
