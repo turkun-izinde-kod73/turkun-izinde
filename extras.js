@@ -27,23 +27,14 @@
         const overlay = document.createElement("div");
         overlay.className = "ti-transition";
         overlay.innerHTML = `
-            <div class="ti-runner" aria-hidden="true">
-<svg viewBox="0 0 350 150" role="img" aria-label="Kurt silüeti">
-<path d="M91 65 Q58 47 25 24 L34 43 L17 39 L31 55 L19 62 L47 61 L73 76 L96 78 Z"/>
-<path d="M78 65 Q96 51 121 51 L153 57 L183 56 Q204 52 218 34 L225 13 L237 34 L248 25 L257 42 L281 45 L310 53 L339 62 L319 71 L294 68 Q281 84 258 89 L232 86 L207 82 L180 85 L151 79 L128 81 L105 77 Z"/>
-<g class="ti-wolf-legs ti-back-legs">
-<path d="M111 75 L128 77 L123 96 L108 117 L110 131 L94 134 L88 128 L101 117 L101 97 L99 81 Z"/>
-<path d="M134 77 L148 79 L145 97 L136 111 L139 126 L124 131 L117 126 L129 114 L127 96 Z"/>
-</g>
-<g class="ti-wolf-legs ti-front-legs">
-<path d="M216 79 L231 82 L227 103 L233 120 L246 129 L243 135 L223 135 L216 127 L213 105 L208 88 Z"/>
-<path d="M239 77 L251 75 L252 94 L256 110 L269 121 L264 128 L247 127 L240 118 L239 99 L233 86 Z"/>
-</g>
-<circle cx="294" cy="55" r="2.5" class="ti-wolf-eye"/>
-</svg>
-</div>
-            <p class="ti-red">☪ ✦ ★</p>
-            <p id="tiMessage">Tarih yolculuğu devam ediyor...</p>`;
+    <div class="ti-runner ti-pack" aria-hidden="true">
+        <img src="wolf-running.svg" class="ti-wolf-image" alt="">
+        <img src="wolf-running.svg" class="ti-wolf-image" alt="">
+        <img src="wolf-running.svg" class="ti-wolf-image" alt="">
+        <img src="wolf-running.svg" class="ti-wolf-image" alt="">
+    </div>
+    <p class="ti-red">☪ ✦ ★</p>
+    <p id="tiMessage">Atalarımızın izinde...</p>`;
         body.appendChild(overlay);
         // Tek kurt siluetinden dort kurtlu bir suru olustur.
         const packLeaderWolf = overlay.querySelector(".ti-runner");
