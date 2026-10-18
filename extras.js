@@ -267,3 +267,148 @@
         document.addEventListener("DOMContentLoaded", initRating);
     else initRating();
 })();
+
+
+/* FIREBASE_SHARED_SCOREBOARD_V1 */
+(function () {
+    const config = {
+        apiKey: "AIzaSyCI4yFdFfB82JK2-22FhXu_-2P0zt37CY",
+        authDomain: "turkun-izinde-puan-20261018.firebaseapp.com",
+        projectId: "turkun-izinde-puan-20261018",
+        storageBucket: "turkun-izinde-puan-20261018.firebasestorage.app",
+        messagingSenderId: "769511864708",
+        appId: "1:769511864708:web:03e9586ca04fe6b09785d1"
+    };
+
+    let pendingSave = Promise.resolve();
+    let lastSaveError = null;
+
+    const ready = (async function () {
+        const version = "11.10.0";
+        const [appSDK, authSDK, dbSDK] = await Promise.all([
+            import(`https://www.gstatic.com/firebasejs/${version}/firebase-app.js`),
+            import(`https://www.gstatic.com/firebasejs/${version}/firebase-auth.js`),
+            import(`https://www.gstatic.com/firebasejs/${version}/firebase-firestore.js`)
+        ]);
+
+        const app = appSDK.initializeApp(config);
+        const auth = authSDK.getAuth(app);
+        await authSDK.signInAnonymously(auth);
+
+        return {
+            db: dbSDK.getFirestore(app),
+            fs: dbSDK
+        };
+    })();
+
+    window.kaydetPuan = function () {
+        let score = NaN;
+        let firstName = "";
+        let lastName = "";
+
+        try {
+            score = Number(puan);
+            firstName = String(oyuncuAdi || "").trim();
+            lastName = String(oyuncuSoyadi || "").trim();
+        } catch (e) {
+            console.error("Test sonucu okunamadı.", e);
+        }
+
+        if (!Number.isInteger(score) || score < 0 || score > 10) {
+            console.error("Geçersiz test puanı.");
+            return Promise.resolve();
+        }
+
+        const first = Array.from(firstName)[0] || "";
+        const last = Array.from(lastName)[0] || "";
+        const initials = first && last
+            ? first.toLocaleUpperCase("tr-TR") + ". " +
+              last.toLocaleUpperCase("tr-TR") + "."
+            : "Misafir";
+
+        lastSaveError = null;
+
+        pendingSave = ready.then(async function (services) {
+            await services.fs.addDoc(
+                services.fs.collection(services.db, "scores"),
+                {
+                    ad: initials,
+                    puan: score,
+                    createdAt: services.fs.serverTimestamp()
+                }
+            );
+        }).catch(function (error) {
+            lastSaveError = error;
+            console.error("Puan ortak tabloya kaydedilemedi:", error);
+        });
+
+        return pendingSave;
+    };
+
+    window.tabloyuGoster = async function () {
+        const table = document.getElementById("leaderboard");
+        if (!table) return;
+
+        table.textContent = "Ortak puan tablosu yükleniyor...";
+
+        try {
+            const services = await ready;
+            await pendingSave;
+
+            const q = services.fs.query(
+                services.fs.collection(services.db, "scores"),
+                services.fs.orderBy("puan", "desc"),
+                services.fs.limit(50)
+            );
+
+            const results = await services.fs.getDocs(q);
+            table.replaceChildren();
+
+            if (lastSaveError) {
+                const warning = document.createElement("p");
+                warning.textContent =
+                    "Son puan kaydedilemedi. İnternet bağlantısını kontrol et.";
+                table.appendChild(warning);
+            }
+
+            if (results.empty) {
+                const empty = document.createElement("p");
+                empty.textContent = "Henüz ortak test sonucu yok.";
+                table.appendChild(empty);
+                return;
+            }
+
+            results.forEach(function (record, index) {
+                const result = record.data();
+                const row = document.createElement("div");
+                row.className = "board-row";
+
+                const name = document.createElement("span");
+                name.textContent =
+                    (index + 1) + ". " + String(result.ad || "Misafir");
+
+                const score = document.createElement("strong");
+                score.className = "red";
+                score.textContent = Number(result.puan) + " / 10";
+
+                row.append(name, score);
+                table.appendChild(row);
+            });
+        } catch (error) {
+            console.error("Ortak puan tablosu yüklenemedi:", error);
+            table.textContent =
+                "Ortak puan tablosu yüklenemedi. Bağlantı ve Firebase ayarlarını kontrol et.";
+        }
+    };
+
+    ready.then(function () {
+        window.tabloyuGoster();
+    }).catch(function (error) {
+        console.error("Firebase bağlantısı kurulamadı:", error);
+        const table = document.getElementById("leaderboard");
+        if (table) {
+            table.textContent =
+                "Puan tablosuna bağlanılamadı. Firebase ayarlarını kontrol et.";
+        }
+    });
+})();
