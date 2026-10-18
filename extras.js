@@ -222,7 +222,8 @@
             import(`https://www.gstatic.com/firebasejs/${v}/firebase-auth.js`),
             import(`https://www.gstatic.com/firebasejs/${v}/firebase-firestore.js`)
         ]);
-        const app = a.initializeApp(config, "ati-site-ratings");
+        const app = a.getApps().find(x => x.name === "ati-shared-final")
+            || a.initializeApp(config, "ati-shared-final");
         return { auth: au.getAuth(app), au, db: fs.getFirestore(app), fs };
     })();
 
@@ -249,8 +250,8 @@
             countEl.textContent = count + (count === 1 ? " değerlendirme" : " değerlendirme");
         } catch (e) {
             console.error("Site puanları yüklenemedi:", e);
-            avg.textContent = "Şimdilik yüklenemedi";
-            countEl.textContent = "Daha sonra tekrar dene";
+            avg.textContent = "Firebase hatası";
+            countEl.textContent = String(e.code || e.message || "Bilinmeyen hata");
         }
     }
 
@@ -351,7 +352,8 @@
             import(`https://www.gstatic.com/firebasejs/${version}/firebase-firestore.js`)
         ]);
 
-        const app = appSDK.initializeApp(config);
+        const app = appSDK.getApps().find(x => x.name === "ati-shared-final")
+            || appSDK.initializeApp(config, "ati-shared-final");
         const auth = authSDK.getAuth(app);
         await authSDK.signInAnonymously(auth);
 
