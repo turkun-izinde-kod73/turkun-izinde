@@ -688,7 +688,9 @@ function tabloyuGoster() {
         satir.className = "board-row";
 
         const isim = document.createElement("span");
-        isim.textContent = (i + 1) + ". " + kayit.ad;
+        const gizliAd = String(kayit.ad || "Misafir");
+        isim.textContent = (i + 1) + ". " +
+            (gizliAd.endsWith("***") ? gizliAd : gizliAd + " ***");
 
         const skor = document.createElement("strong");
         skor.className = "red";

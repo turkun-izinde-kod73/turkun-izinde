@@ -444,8 +444,9 @@
                 row.className = "board-row";
 
                 const name = document.createElement("span");
-                name.textContent =
-                    (index + 1) + ". " + String(result.ad || "Misafir");
+                const gizliAd = String(result.ad || "Misafir");
+                name.textContent = (index + 1) + ". " +
+                    (gizliAd.endsWith("***") ? gizliAd : gizliAd + " ***");
 
                 const score = document.createElement("strong");
                 score.className = "red";
