@@ -209,7 +209,7 @@
 /* SITE_RATING_WIDGET_LOCAL */
 (function () {
     const config = {
-        apiKey: "AIzaSyCI4yFdFfB82JK2-22Fhxu_-2P0zt37CY",
+        apiKey: "AIzaSyCI4yFdFfB82JK2-22-Fhxu_-2P0zt37CY",
         authDomain: "turkun-izinde-puan-20261018.firebaseapp.com",
         projectId: "turkun-izinde-puan-20261018",
         appId: "1:769511864708:web:03e9586ca04fe6b09785d1"
@@ -333,7 +333,7 @@
 /* FIREBASE_SHARED_SCOREBOARD_V1 */
 (function () {
     const config = {
-        apiKey: "AIzaSyCI4yFdFfB82JK2-22Fhxu_-2P0zt37CY",
+        apiKey: "AIzaSyCI4yFdFfB82JK2-22-Fhxu_-2P0zt37CY",
         authDomain: "turkun-izinde-puan-20261018.firebaseapp.com",
         projectId: "turkun-izinde-puan-20261018",
         storageBucket: "turkun-izinde-puan-20261018.firebasestorage.app",
