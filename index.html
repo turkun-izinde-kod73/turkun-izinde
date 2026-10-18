@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#100f18">
+<title>Türk'ün İzinde | By Hira Cinali</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #100f18;
+    color: #f5f2f2;
+    line-height: 1.7;
+}
+
+header {
+    background: #191521;
+    border-bottom: 1px solid #48232e;
+    padding: 18px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.logo {
+    color: #ff5268;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+nav a {
+    color: #eee;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #ff5268;
+}
+
+.hero {
+    min-height: 76vh;
+    padding: 65px 8%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(ellipse at top, #512331, #100f18 72%);
+}
+
+.flag {
+    font-size: 76px;
+    animation: glow 3s infinite;
+}
+
+h1 {
+    font-size: clamp(35px, 6vw, 62px);
+    line-height: 1.2;
+}
+
+.red {
+    color: #ff5268;
+}
+
+.hero p {
+    max-width: 680px;
+    color: #d3cbd5;
+}
+
+.button {
+    border: 0;
+    display: inline-block;
+    margin-top: 18px;
+    padding: 12px 22px;
+    border-radius: 8px;
+    background: #d8324c;
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.button:hover {
+    background: #f34b61;
+}
+
+section {
+    padding: 60px 8%;
+}
+
+.heading {
+    text-align: center;
+    font-size: 30px;
+}
+
+.subheading {
+    text-align: center;
+    color: #c6bdca;
+    margin-bottom: 30px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(205px, 1fr));
+    gap: 18px;
+}
+
+.card {
+    padding: 22px;
+    background: #1c1926;
+    border: 1px solid #3c2937;
+    border-radius: 13px;
+}
+
+.card h3 {
+    color: #ff6377;
+}
+
+.card p {
+    color: #ccc3d0;
+    font-size: 14px;
+}
+
+.quote {
+    text-align: center;
+    background: #19131e;
+    border-top: 1px solid #452532;
+    border-bottom: 1px solid #452532;
+}
+
+.quote blockquote {
+    max-width: 760px;
+    margin: auto;
+    font-size: clamp(21px, 4vw, 29px);
+}
+
+.quiz-box {
+    max-width: 760px;
+    margin: auto;
+    padding: 26px;
+    background: #1b1825;
+    border: 1px solid #49303c;
+    border-radius: 16px;
+}
+
+input {
+    width: 100%;
+    padding: 13px;
+    margin-top: 8px;
+    border-radius: 8px;
+    border: 1px solid #554454;
+    background: #100f18;
+    color: white;
+    font-size: 16px;
+}
+
+input:focus {
+    outline: 2px solid #ff5268;
+}
+
+.notice {
+    padding: 12px;
+    background: #252130;
+    border-radius: 8px;
+    color: #d0c5d4;
+    font-size: 13px;
+}
+
+.progress-bg {
+    height: 8px;
+    background: #39313f;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 18px 0;
+}
+
+.progress {
+    height: 100%;
+    background: #ff5268;
+    transition: width .25s;
+}
+
+.answers {
+    display: grid;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.answer {
+    width: 100%;
+    padding: 13px;
+    text-align: left;
+    border: 1px solid #514254;
+    border-radius: 9px;
+    background: #252130;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.answer:hover:not(:disabled) {
+    border-color: #ff5268;
+}
+
+.answer:disabled {
+    cursor: default;
+    opacity: 1;
+}
+
+.answer.correct {
+    background: #17442d;
+    border-color: #42c878;
+}
+
+.answer.wrong {
+    background: #572430;
+    border-color: #ff6377;
+}
+
+#feedback {
+    min-height: 28px;
+}
+
+.board-row {
+    padding: 12px 5px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    border-bottom: 1px solid #403342;
+}
+
+footer {
+    padding: 30px 8%;
+    text-align: center;
+    color: #b9afbe;
+    font-size: 13px;
+}
+
+@keyframes glow {
+    0%, 100% {
+        text-shadow: 0 0 10px #ff526855;
+    }
+    50% {
+        text-shadow: 0 0 30px #ff5268;
+    }
+}
+</style>
+<link rel="stylesheet" href="extras.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">☪ Türk'ün İzinde</div>
+    <nav>
+        <a href="#ana">Ana Sayfa</a>
+        <a href="#tarih">Tarihimiz</a>
+        <a href="#test">Bilgi Testi</a>
+        <a href="#puanlar">Puan Tablosu</a>
+    </nav>
+</header>
+
+<main>
+
+<section class="hero" id="ana">
+    <div class="flag">🇹🇷</div>
+    <h1>Bir milletin izinde,<br>
+        <span class="red">bir tarihin ışığında.</span>
+    </h1>
+
+    <p>
+Türklük; Orta Asya'dan Anadolu'ya uzanan köklü bir tarihin,
+zengin bir kültürün ve kuşaktan kuşağa aktarılan bir mirasın adıdır.
+Geçmişimizi öğrenmek, dilimizi ve geleneklerimizi tanımak,
+tarihimizin izlerini geleceğe bilgiyle taşımaktır.
+</p>
+
+    <a class="button" href="#tarih">Tarihimize Yolculuk →</a>
+</section>
+
+
+<section id="tarih">
+    <h2 class="heading">Türk Tarihinden Kısa Bilgiler</h2>
+    <p class="subheading">
+        Orta Asya'dan Türkiye Cumhuriyeti'ne uzanan tarih yolculuğu.
+    </p>
+
+    <div class="cards">
+        <article class="card">
+            <div class="icon">🏹</div>
+            <h3>Asya Hun Devleti</h3>
+            <p>
+                Asya Hun Devleti, Türk tarihinin bilinen ilk teşkilatlı
+                devleti olarak genellikle kabul edilir. Mete Han,
+                Türk tarihinde önemli bir hükümdardır.
+            </p>
+        </article>
+
+        <article class="card">
+            <div class="icon">📜</div>
+            <h3>Göktürkler ve Orhun Yazıtları</h3>
+            <p>
+                Göktürkler, Türk adını devlet adı olarak kullanan ilk
+                devlet olarak bilinir. Orhun Yazıtları, eski Türk
+                tarihinin en önemli yazılı kaynakları arasındadır.
+            </p>
+        </article>
+
+        <article class="card">
+            <div class="icon">🇹🇷</div>
+            <h3>Mustafa Kemal Atatürk</h3>
+            <p>
+                Atatürk, 19 Mayıs 1919'da Samsun'a çıktı.
+                Millî Mücadele'nin ardından Türkiye Cumhuriyeti
+                29 Ekim 1923'te ilan edildi.
+            </p>
+        </article>
+
+        <article class="card">
+            <div class="icon">🏛️</div>
+            <h3>Türkiye Büyük Millet Meclisi</h3>
+            <p>
+                TBMM, 23 Nisan 1920'de Ankara'da açıldı.
+                Bu tarih günümüzde Ulusal Egemenlik ve Çocuk Bayramı
+                olarak kutlanır.
+            </p>
+        </article>
+    </div>
+</section>
+
+
+<section class="quote">
+    <blockquote>
+        “Geçmişimizden güç, geleceğimizden umut alıyoruz.”
+    </blockquote>
+    <p class="red">— Türk'ün İzinde</p>
+</section>
+
+<section id="test">
+    <h2 class="heading">🇹🇷 Ne Kadar Türksün?</h2>
+    <p class="subheading">Türk devletleri, Atatürk, Millî Mücadele ve geleneksel kültür üzerine 10 soruluk meydan okuma.</p>
+
+    <div class="quiz-box" id="quiz">
+        <h3>Bilgini test etmeye hazır mısın?</h3>
+
+        <label for="firstName">Adın</label>
+        <input id="firstName" maxlength="40"
+            placeholder="Adın" autocomplete="given-name">
+
+        <label for="lastName" style="display:block;margin-top:12px">Soyadın</label>
+        <input id="lastName" maxlength="50"
+            placeholder="Soyadın" autocomplete="family-name">
+
+        <p class="notice">
+            Ad ve soyadın test sırasında alınır. Puan tablosunda yalnızca
+            adının ve soyadının baş harfleri gösterilir (ör. H. C.).
+            Bu deneme sürümü puanları yalnızca bu tarayıcıda saklar;
+            henüz ortak internet tablosu veya yönetici ekranı yoktur.
+        </p>
+
+        <button class="button" onclick="baslat()">Teste Başla →</button>
+        <p id="startError" class="red"></p>
+    </div>
+</section>
+
+<section id="puanlar">
+    <h2 class="heading">🏆 Puan Tablosu</h2>
+    <p class="subheading">Bu tarayıcıda kaydedilen test sonuçları</p>
+    <div class="box quiz-box" id="leaderboard">
+        <p>Henüz sonuç yok. İlk testi sen tamamla!</p>
+    </div>
+    <div style="text-align:center;margin-top:18px">
+        <button class="button" id="resetScores">Puan Tablosunu Sıfırla</button>
+    </div>
+    <p class="notice" style="max-width:760px;margin:16px auto">
+        Sıfırlama yalnızca bu tarayıcıdaki sonuçları siler.
+        Bu sürümde puan tablosu henüz diğer ziyaretçilerle ortak değildir.
+    </p>
+</section>
+
+</main>
+
+<footer>
+    <p class="red"><strong>By Hira Cinali</strong></p>
+    <p>Bu benim ilk yazılım projemdir.</p>
+    <p>Yapay zekâdan destek alınmıştır. Hatalı çalışabilir.</p>
+    <p>Türk'ün İzinde 🇹🇷</p>
+</footer>
+
+<script>
+const sorular = [
+    {
+        soru: "İLK TÜRK DEVLETLERİ — Türk tarihinin bilinen ilk teşkilatlı devleti olarak genellikle hangisi kabul edilir?",
+        secenekler: ["Asya Hun Devleti", "Göktürk Kağanlığı", "Uygur Kağanlığı", "Karahanlılar"],
+        dogru: 0,
+        bilgi: "Asya Hun Devleti, Türk tarihinin bilinen ilk teşkilatlı devleti olarak genellikle kabul edilir."
+    },
+    {
+        soru: "TÜRK ASKERÎ TARİHİ — Mete Han hangi askerî düzenlemeyle tanınır?",
+        secenekler: ["Tımar sistemi", "Devşirme sistemi", "Onlu teşkilat", "İkta sistemi"],
+        dogru: 2,
+        bilgi: "Mete Han, onlu askerî teşkilatla ilişkilendirilen önemli bir Hun hükümdarıdır."
+    },
+    {
+        soru: "GÖKTÜRKLER — Türk adını devlet adı olarak kullanan ilk devlet hangisidir?",
+        secenekler: ["Asya Hun Devleti", "Uygur Kağanlığı", "Göktürk Kağanlığı", "Osmanlı Devleti"],
+        dogru: 2,
+        bilgi: "Göktürk Kağanlığı, Türk adını devlet adı olarak kullanan ilk devlet olarak bilinir."
+    },
+    {
+        soru: "YAZILI TARİH — Orhun Yazıtları yaklaşık hangi yüzyıldan kalmıştır?",
+        secenekler: ["5. yüzyıl", "6. yüzyıl", "8. yüzyıl", "11. yüzyıl"],
+        dogru: 2,
+        bilgi: "Kül Tigin ve Bilge Kağan yazıtları 8. yüzyılda dikilmiştir."
+    },
+    {
+        soru: "ANADOLU TARİHİ — Malazgirt Meydan Muharebesi hangi yılda gerçekleşmiştir?",
+        secenekler: ["1040", "1071", "1176", "1299"],
+        dogru: 1,
+        bilgi: "1071 Malazgirt Zaferi, Anadolu tarihinin önemli dönüm noktalarındandır."
+    },
+    {
+        soru: "ATATÜRK — Mustafa Kemal Atatürk hangi şehirde doğmuştur?",
+        secenekler: ["İstanbul", "Ankara", "Selanik", "Manastır"],
+        dogru: 2,
+        bilgi: "Mustafa Kemal Atatürk, o dönemde Osmanlı toprağı olan Selanik'te doğmuştur."
+    },
+    {
+        soru: "MİLLÎ MÜCADELE — Atatürk Samsun'a hangi tarihte çıkmıştır?",
+        secenekler: ["23 Nisan 1920", "19 Mayıs 1919", "30 Ağustos 1922", "29 Ekim 1923"],
+        dogru: 1,
+        bilgi: "19 Mayıs 1919, Millî Mücadele sürecinin önemli başlangıç noktalarındandır."
+    },
+    {
+        soru: "TBMM — Türkiye Büyük Millet Meclisi hangi tarihte açılmıştır?",
+        secenekler: ["19 Mayıs 1919", "12 Mart 1921", "23 Nisan 1920", "29 Ekim 1923"],
+        dogru: 2,
+        bilgi: "TBMM, 23 Nisan 1920'de Ankara'da açılmıştır."
+    },
+    {
+        soru: "CUMHURİYET — Türkiye Cumhuriyeti hangi tarihte ilan edilmiştir?",
+        secenekler: ["23 Nisan 1920", "19 Mayıs 1919", "30 Ağustos 1922", "29 Ekim 1923"],
+        dogru: 3,
+        bilgi: "Türkiye Cumhuriyeti 29 Ekim 1923'te ilan edilmiş, Atatürk ilk cumhurbaşkanı olmuştur."
+    },
+    {
+        soru: "GELENEKSEL KÜLTÜR — Karagöz ve Hacivat hangi sanatla tanınır?",
+        secenekler: ["Ebru sanatı", "Gölge oyunu", "Çini sanatı", "Hat sanatı"],
+        dogru: 1,
+        bilgi: "Karagöz ve Hacivat, geleneksel Türk gölge oyununun tanınmış karakterleridir."
+    }
+];
+
+let sira = 0;
+let puan = 0;
+let oyuncuAdi = "";
+let oyuncuSoyadi = "";
+let cevaplandi = false;
+
+function baslat() {
+    oyuncuAdi = document.getElementById("firstName").value.trim();
+    oyuncuSoyadi = document.getElementById("lastName").value.trim();
+
+    if (!oyuncuAdi || !oyuncuSoyadi) {
+        document.getElementById("startError").textContent =
+            "Lütfen hem adını hem soyadını yaz.";
+        return;
+    }
+
+    sira = 0;
+    puan = 0;
+    soruyuGoster();
+}
+
+function soruyuGoster() {
+    cevaplandi = false;
+    const q = sorular[sira];
+    const yuzde = (sira / sorular.length) * 100;
+
+    document.getElementById("quiz").innerHTML = `
+        <p class="red"><strong>Soru ${sira + 1} / 10</strong></p>
+        <div class="progress-bg">
+            <div class="progress" style="width:${yuzde}%"></div>
+        </div>
+        <h3>${q.soru}</h3>
+        <div class="answers">
+            ${q.secenekler.map((secenek, i) => `
+                <button class="answer" onclick="cevapSec(${i})">
+                    ${String.fromCharCode(65 + i)}. ${secenek}
+                </button>
+            `).join("")}
+        </div>
+        <p id="feedback"></p>
+        <button id="next" class="button"
+            style="display:none" onclick="sonraki()">Sonraki →</button>
+    `;
+}
+
+function cevapSec(secim) {
+    if (cevaplandi) return;
+
+    cevaplandi = true;
+    const q = sorular[sira];
+    const butonlar = document.querySelectorAll(".answer");
+
+    butonlar.forEach((buton, i) => {
+        buton.disabled = true;
+
+        if (i === q.dogru) {
+            buton.classList.add("correct");
+        } else if (i === secim) {
+            buton.classList.add("wrong");
+        }
+    });
+
+    if (secim === q.dogru) {
+        puan++;
+        document.getElementById("feedback").textContent =
+            "✅ Doğru! " + q.bilgi;
+    } else {
+        document.getElementById("feedback").textContent =
+            "📚 Doğru cevap: " + q.secenekler[q.dogru] + ". " + q.bilgi;
+    }
+
+    const next = document.getElementById("next");
+    next.style.display = "inline-block";
+    next.textContent = sira === 9 ? "Sonucu Gör →" : "Sonraki Soru →";
+}
+
+function sonraki() {
+    if (sira < 9) {
+        sira++;
+        soruyuGoster();
+    } else {
+        sonucuGoster();
+    }
+}
+
+function sonucuGoster() {
+    let seviye;
+    let aciklama;
+
+    if (puan >= 9) {
+        seviye = "Tarih ve Kültür Ustası! 🏆";
+        aciklama = "Tarihimiz ve kültürümüz hakkında çok güçlü bir sonuç elde ettin.";
+    } else if (puan >= 7) {
+        seviye = "Tarih Araştırmacısı! 🏛️";
+        aciklama = "Birçok önemli bilgiyi biliyorsun. Merakınla daha fazlasını keşfedebilirsin.";
+    } else if (puan >= 4) {
+        seviye = "Kültür Meraklısı! 🌟";
+        aciklama = "Güzel bir başlangıç yaptın. Yeni bilgiler öğrendikçe puanını geliştirebilirsin.";
+    } else {
+        seviye = "Keşif Yolculuğundasın! 🧭";
+        aciklama = "Tarihimizde keşfedilecek çok şey var. Öğrenmeye devam et ve tekrar dene!";
+    }
+
+    kaydetPuan();
+
+    document.getElementById("quiz").innerHTML = `
+        <div style="text-align:center">
+            <div style="font-size:52px">🇹🇷</div>
+            <p class="red"><strong>TEST SONUCUN</strong></p>
+            <h2>${seviye}</h2>
+            <p style="font-size:42px;font-weight:bold">${puan}<span style="font-size:20px"> / 10</span></p>
+            <div class="progress-bg">
+                <div class="progress" style="width:${puan * 10}%"></div>
+            </div>
+            <p>${aciklama}</p>
+            <p class="notice">
+                Bu sonuç yalnızca Türk tarihi ve kültürü hakkındaki
+                bu testteki bilgini yansıtır; kimliğini veya Türklüğünü ölçmez.
+            </p>
+            <button class="button" onclick="yenidenBaslat()">Tekrar Çöz ↻</button>
+            <button class="button" onclick="paylasSonuc()">WhatsApp'ta Paylaş</button>
+        </div>
+    `;
+
+    tabloyuGoster();
+}
+
+function kaydetPuan() {
+    let sonuclar = [];
+
+    try {
+        sonuclar = JSON.parse(
+            localStorage.getItem("turkunIzindePuanlari") || "[]"
+        );
+
+        if (!Array.isArray(sonuclar)) sonuclar = [];
+    } catch (e) {
+        sonuclar = [];
+    }
+
+    // Puan tablosuna yalnızca ad ve soyad baş harfleri kaydedilir.
+    const adIlkHarf = Array.from(oyuncuAdi)[0].toLocaleUpperCase("tr-TR");
+    const soyadIlkHarf = Array.from(oyuncuSoyadi)[0].toLocaleUpperCase("tr-TR");
+    const gizliAd = adIlkHarf + ". " + soyadIlkHarf + ".";
+
+    sonuclar.push({
+        ad: gizliAd,
+        puan: puan
+    });
+
+    sonuclar.sort((a, b) => b.puan - a.puan);
+    sonuclar = sonuclar.slice(0, 50);
+
+    try {
+        localStorage.setItem(
+            "turkunIzindePuanlari",
+            JSON.stringify(sonuclar)
+        );
+    } catch (e) {
+        // Tarayıcı kaydetmeyi engellerse test yine çalışır.
+    }
+}
+
+function tabloyuGoster() {
+    let sonuclar = [];
+
+    try {
+        sonuclar = JSON.parse(
+            localStorage.getItem("turkunIzindePuanlari") || "[]"
+        );
+
+        if (!Array.isArray(sonuclar)) sonuclar = [];
+    } catch (e) {
+        sonuclar = [];
+    }
+
+    const tablo = document.getElementById("leaderboard");
+
+    if (!sonuclar.length) {
+        tablo.textContent = "Henüz sonuç yok.";
+        return;
+    }
+
+    tablo.replaceChildren();
+
+    sonuclar.forEach((kayit, i) => {
+        const satir = document.createElement("div");
+        satir.className = "board-row";
+
+        const isim = document.createElement("span");
+        isim.textContent = (i + 1) + ". " + kayit.ad;
+
+        const skor = document.createElement("strong");
+        skor.className = "red";
+        skor.textContent = kayit.puan + " / 10";
+
+        satir.append(isim, skor);
+        tablo.appendChild(satir);
+    });
+}
+
+tabloyuGoster();
+
+function puanTablosunuSifirla() {
+    if (!confirm("Bu tarayıcıdaki tüm test sonuçlarını silmek istiyor musun?")) {
+        return;
+    }
+
+    try {
+        localStorage.removeItem("turkunIzindePuanlari");
+    } catch (e) {
+        alert("Tarayıcı kayıtlarına erişilemedi.");
+        return;
+    }
+
+    tabloyuGoster();
+    alert("Puan tablosu sıfırlandı!");
+}
+
+const sifirlaDugmesi = document.getElementById("resetScores");
+if (sifirlaDugmesi) {
+    sifirlaDugmesi.addEventListener("click", puanTablosunuSifirla);
+}
+
+</script>
+<
+function yenidenBaslat() {
+    window.location.reload();
+}
+
+function paylasSonuc() {
+    const mesaj =
+        "Türk'ün İzinde tarih testini tamamladım! " +
+        "10 soruda " + puan + " doğru yaptım. 🇹🇷";
+
+    const adres =
+        "https://wa.me/?text=" + encodeURIComponent(mesaj);
+
+    window.open(adres, "_blank", "noopener,noreferrer");
+}
+
+/body>
+</html>
+<script src="extras.js"></script>
