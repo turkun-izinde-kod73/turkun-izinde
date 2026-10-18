@@ -325,3 +325,62 @@ body.ti-locked { overflow: hidden; }
         animation: none !important;
     }
 }
+
+/* Emoji kurt surusu */
+.ti-transition .ti-runner.ti-pack {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: min(90vw, 650px);
+    max-width: 96vw;
+    gap: 0;
+    overflow: visible;
+    filter: drop-shadow(0 0 12px #d8324c66);
+}
+
+.ti-wolf-emoji {
+    display: inline-block;
+    flex: 1 1 25%;
+    font-size: clamp(38px, 8vw, 76px);
+    line-height: 1.4;
+    text-align: center;
+    margin-left: -5px;
+    filter: drop-shadow(0 0 5px #000);
+    animation: tiEmojiGallop .22s ease-in-out infinite alternate;
+}
+
+.ti-wolf-emoji:nth-child(1) {
+    opacity: .55;
+    position: relative;
+    top: 8px;
+    animation-delay: -.16s;
+}
+.ti-wolf-emoji:nth-child(2) {
+    opacity: .72;
+    position: relative;
+    top: -5px;
+    animation-delay: -.10s;
+}
+.ti-wolf-emoji:nth-child(3) {
+    opacity: .88;
+    position: relative;
+    top: 4px;
+    animation-delay: -.05s;
+}
+.ti-wolf-emoji:nth-child(4) {
+    opacity: 1;
+}
+
+.ti-transition.active .ti-runner.ti-pack {
+    animation: tiEmojiPackRun 1.7s ease-in-out both !important;
+}
+
+@keyframes tiEmojiGallop {
+    from { translate: 0 2px; }
+    to { translate: 0 -4px; }
+}
+@keyframes tiEmojiPackRun {
+    0% { transform: translateX(-85vw); opacity: 0; }
+    15% { opacity: 1; }
+    100% { transform: translateX(85vw); opacity: 0; }
+}

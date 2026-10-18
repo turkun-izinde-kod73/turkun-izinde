@@ -28,10 +28,10 @@
         overlay.className = "ti-transition";
         overlay.innerHTML = `
     <div class="ti-runner ti-pack" aria-hidden="true">
-        <img src="wolf-running.svg" class="ti-wolf-image" alt="">
-        <img src="wolf-running.svg" class="ti-wolf-image" alt="">
-        <img src="wolf-running.svg" class="ti-wolf-image" alt="">
-        <img src="wolf-running.svg" class="ti-wolf-image" alt="">
+        <span class="ti-wolf-emoji">🐺</span>
+        <span class="ti-wolf-emoji">🐺</span>
+        <span class="ti-wolf-emoji">🐺</span>
+        <span class="ti-wolf-emoji">🐺</span>
     </div>
     <p class="ti-red">☪ ✦ ★</p>
     <p id="tiMessage">Atalarımızın izinde...</p>`;
