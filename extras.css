@@ -384,3 +384,37 @@ body.ti-locked { overflow: hidden; }
     15% { opacity: 1; }
     100% { transform: translateX(85vw); opacity: 0; }
 }
+
+
+/* SITE_RATING_WIDGET_LOCAL */
+.site-rating-section {
+    box-sizing: border-box;
+    width: min(850px, calc(100% - 32px));
+    margin: 38px auto;
+    padding: 28px 20px;
+    text-align: center;
+    color: #f8edf1;
+    background: linear-gradient(145deg, #211824, #17141f);
+    border: 1px solid #65404b;
+    border-radius: 16px;
+}
+.site-rating-kicker { color: #ff8796; font-weight: bold; letter-spacing: 2px; }
+.site-rating-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin: 22px auto;
+}
+.site-rating-button {
+    min-width: 42px;
+    min-height: 42px;
+    border: 1px solid #98606e;
+    border-radius: 9px;
+    background: #302331;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+.site-rating-button.selected { background: #d8324c; border-color: #ff8796; }
+.site-rating-note { font-size: 12px; color: #bcaebb; }

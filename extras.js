@@ -204,3 +204,66 @@
         baslat();
     }
 })();
+
+
+/* SITE_RATING_WIDGET_LOCAL */
+(function () {
+    function initRating() {
+        if (document.getElementById("siteRatingSection")) return;
+
+        const section = document.createElement("section");
+        section.id = "siteRatingSection";
+        section.className = "site-rating-section";
+        section.innerHTML = `
+          <p class="site-rating-kicker">⭐ FİKRİNİ BİZİMLE PAYLAŞ</p>
+          <h2>Atalarımızın İzinde'yi nasıl buldun?</h2>
+          <p>Sitemize 10 üzerinden bir puan ver!</p>
+          <div class="site-rating-buttons">
+            ${Array.from({length:10}, (_,i) =>
+              `<button type="button" class="site-rating-button"
+              data-score="${i+1}">${i+1}</button>`
+            ).join("")}
+          </div>
+          <p id="siteRatingResult" aria-live="polite">Puanını seç ❤️</p>
+          <p class="site-rating-note">
+            Bu basit sürüm puanını yalnızca bu tarayıcıda saklar.
+          </p>`;
+
+        const footer = document.querySelector("footer");
+        if (footer) footer.parentNode.insertBefore(section, footer);
+        else document.body.appendChild(section);
+
+        const result = section.querySelector("#siteRatingResult");
+        const buttons = section.querySelectorAll(".site-rating-button");
+
+        function selectScore(score, saved) {
+          buttons.forEach(b => {
+            const active = Number(b.dataset.score) === score;
+            b.classList.toggle("selected", active);
+            b.setAttribute("aria-pressed", String(active));
+          });
+          result.textContent = saved
+            ? "Puanın kaydedildi: " + score + "/10 ❤️"
+            : "Puanını seç ❤️";
+        }
+
+        buttons.forEach(b => b.addEventListener("click", () => {
+          const score = Number(b.dataset.score);
+          try {
+            localStorage.setItem("atalarimizinIzindeSitePuani", score);
+            selectScore(score, true);
+          } catch (e) {
+            result.textContent = "Seçtiğin puan: " + score + "/10";
+          }
+        }));
+
+        try {
+          const old = Number(localStorage.getItem("atalarimizinIzindeSitePuani"));
+          if (old >= 1 && old <= 10) selectScore(old, true);
+        } catch (e) {}
+    }
+
+    if (document.readyState === "loading")
+        document.addEventListener("DOMContentLoaded", initRating);
+    else initRating();
+})();
