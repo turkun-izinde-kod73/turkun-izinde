@@ -384,7 +384,7 @@
         const maskLetter = value => {
             const chars = Array.from(String(value || "").trim());
             return chars.length
-                ? chars[0].toLocaleUpperCase("tr-TR") + "******"
+                ? chars[0].toLocaleUpperCase("tr-TR") + "***"
                 : "";
         };
         const maskedName = firstName && lastName
@@ -458,7 +458,7 @@
                     /^([\p{L}])(?:[.*]+)?\s+([\p{L}])(?:[.*]+)?(?:\s+\*+)?$/u
                 );
                 const displayName = initialsMatch
-                    ? initialsMatch[1] + "****** " + initialsMatch[2] + "******"
+                    ? initialsMatch[1] + "*** " + initialsMatch[2] + "***"
                     : (rawName || "Misafir");
                 name.textContent = rowNumber + ". " + displayName;
 
